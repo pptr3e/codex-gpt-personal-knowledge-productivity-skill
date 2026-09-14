@@ -1,0 +1,13 @@
+interface:
+  display_name: "个人知识与经验助手"
+  short_description: "确认后把会话经验记录或从 Notion 找回"
+  default_prompt: "Use $personal-knowledge-experience-assistant to record the current discussion, focusing on the decisions and next actions."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "notion"
+      description: "Notion workspace search and write access"
+
+policy:
+  allow_implicit_invocation: false
