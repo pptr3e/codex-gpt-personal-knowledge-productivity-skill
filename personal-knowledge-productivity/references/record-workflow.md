@@ -50,11 +50,19 @@ End by asking whether the user wants to proceed. Only write after the user expli
 
 ## Write and verify
 
-After confirmation, preflight access to both destinations. Create or update the full body as an ordinary child of its type page, not in `总索引`. Create the knowledge card before the problem experience when both are new; then add reciprocal page mentions or links in their bodies. Preserve the body page's existing URL on an append.
+After confirmation, preflight access to both destinations. Approval of the proposed record covers both its body and its planned index row; do not ask again merely to finish that row. Keep a per-page checklist in the working context: body ID/URL, body verified, matching index ID/URL, index verified, and any pending reciprocal links. Create or update the full body as an ordinary child of its type page, not in `总索引`. Preserve the body page's existing URL on an append. Immediately complete and verify that body's index before starting another body. When both split pages are new, create and index the knowledge card, then create and index the problem experience, then finish and verify reciprocal links.
 
 For each body page, find its index row by `原页面` URL. Create one metadata-only row if none exists; update the existing row if title or classifications changed. Its `标题` matches the body title, `记录类型` is a single select value, `使用领域` and `细分类` are multi-select values, and `原页面` is the body page URL (Original page URL). Leave the index-row body empty. Do not create a second row for the same URL or move the body page into the index. Do not change a saved view merely to run a search.
 
 Re-read changed body pages, their parents, and index rows. Verify one body page has one matching index row, the `原页面` link opens that exact body page, split pages retain distinct focus and reciprocal links, and each body follows its type template without empty sections or invented facts. Report partial success explicitly; never claim recording complete while the body or index is missing. Do not retry partial failures without explaining what succeeded.
+
+### Index lookup and completion gate
+
+- Query the configured data source directly by `原页面`, not just a title search or the saved view. A view can hide existing rows. An empty search result, filtered view, truncated response, or unavailable query does not establish absence. Use a complete unfiltered data-source read when necessary, following pagination; if coverage cannot be established, report verification incomplete and do not create a speculative duplicate.
+- Compare Notion page identity as well as the returned URL: host aliases, hyphens, title slugs, and query parameters such as `pvs` can differ for the same page ID. Keep the body URL returned by Notion in `原页面`; do not rewrite existing links just to normalize spelling.
+- Zero matching rows after a complete lookup: create the planned metadata-only row under the configured index data source, with all five properties, then read it back. One matching row: reuse it and update only confirmed metadata when needed. Multiple matching rows: report the duplicate links and stop changes to this record; do not automatically delete or merge rows.
+- Before reporting success, verify every checklist entry, including index parent, all five property values, empty index body, and exactly one row pointing to the body. A successful create response alone is insufficient. Return each body's link and its corresponding index-row link with the verification result; for several records a compact table is suitable.
+- If indexing fails after the body succeeds, state `正文已保存，索引未完成` and provide the existing body link. Resolve uncertain outcomes using [safety-and-confirmation.md](safety-and-confirmation.md). When absence is established and the operation remains within the confirmed plan, finish only the missing row; allow at most one repair attempt in this run. If it still fails, stop with the exact remaining step rather than recreating the body or looping.
 
 ## Lightweight task rule
 

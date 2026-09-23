@@ -14,6 +14,7 @@ Read this reference in both record and retrieval workflows. It adds decision rul
 - A timeout, missing response, or tool error after a write does not prove that the write failed. Before repeating it, read the affected body page and its parent when identifiable, then search the index by the exact original body-page URL and read any matching rows.
 - Distinguish confirmed completed parts, confirmed missing parts, and parts whose outcome is still unknown. Tell the user this state plainly; do not call the overall record complete while its body or unique matching index row is unverified.
 - Never recreate a body page whose creation may already have succeeded. Never blindly recreate an index row: use the body page's existing URL as the deduplication key and verify that no row for that URL exists.
+- Apply the record workflow's index lookup and completion gate: compare the underlying Notion page ID across URL variants and establish complete query coverage. Title search and a filtered saved view cannot prove that an index row is absent. An unavailable lookup means unknown, not zero matches.
 - Continue only when the missing operation is unambiguously within the user's already confirmed plan, the body page identity is established, and readback establishes that the operation will not duplicate or change a different record. Explain the partial state, complete only the missing part, and read back again.
 - If identity, uniqueness, or the prior write's result cannot be established, stop and ask the user how to proceed. Do not modify unrelated pages as a repair.
 
